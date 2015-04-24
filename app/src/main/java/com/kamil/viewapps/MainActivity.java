@@ -86,7 +86,6 @@ public class MainActivity extends ListActivity {
                 }
             });
             appAdapter = new AppAdapter(MainActivity.this, R.layout.item_list, appList);
-            Log.i(LOG,"async");
             return null;
         }
 
@@ -94,7 +93,6 @@ public class MainActivity extends ListActivity {
         @Override
         protected void onPostExecute(Void aVoid) {
             setListAdapter(appAdapter);
-            Log.i(LOG,"onpost");
             if (state != null)
                 getListView().onRestoreInstanceState(state);
             super.onPostExecute(aVoid);
@@ -102,7 +100,6 @@ public class MainActivity extends ListActivity {
 
         @Override
         protected void onPreExecute() {
-            Log.i(LOG,"onpre");
             super.onPreExecute();
         }
 
@@ -113,14 +110,12 @@ public class MainActivity extends ListActivity {
     protected void onResume() {
         super.onResume();
         new LoadAppplications().execute();
-        Log.i( LOG,"onresume");
     }
 
 
     @Override
     protected void onPause() {
         state = getListView().onSaveInstanceState();
-        Log.i(LOG,"onpause");
         super.onPause();
     }
 
